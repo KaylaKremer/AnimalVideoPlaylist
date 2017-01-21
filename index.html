@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animal Playlist</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+    <div>
+        <h1>Animal Playlist</h1>
+        <video id="playlistVideo">
+            <source src="" type="video/mp4" id="videoSource" />
+        </video>
+        <input type="range" id="seek" min="0" step="1" value="0" />
+        <input type="range" id="volume" min="0" max="1" step=".1" value="1" />
+        <button id="mute"><img src="images/mute.png" id="muteImg"/></button>
+        <button id="previous"><img src="images/previous.png" id="previousImg"/></button>
+        <button id="playPause"><img src="images/play.png" id="playPauseImg"/></button>
+        <button id="next"><img src="images/next.png" id="nextImg"/></button>
+        <button id="replay"><img src="images/replay.png" id="replayImg"/></button>
+    </div>
+    <ol id="playlist">
+    </ol>      
+    <script src="playlist.js"></script>
+    <script src="video.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
