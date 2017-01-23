@@ -83,6 +83,7 @@ nextButton.addEventListener("click", function() {
   playlist.playlistHTML(playlistElement);
   playlist.playlistSource(videoSourceElement);
   videoElement.load();
+  seekSlider.value = 0;
   playPauseImg.src = playIcon;
 });
 
@@ -92,6 +93,7 @@ previousButton.addEventListener("click", function() {
   playlist.playlistHTML(playlistElement);
   playlist.playlistSource(videoSourceElement);
   videoElement.load();
+  seekSlider.value = 0;
   playPauseImg.src = playIcon;
 });
 
@@ -128,8 +130,9 @@ videoElement.addEventListener("ended", function(){
     playlist.playlistHTML(playlistElement);
     playlist.playlistSource(videoSourceElement);
     videoElement.load();
-    videoElement.play();
     playPauseImg.src = pauseIcon;
+    seekSlider.value = 0;
+    videoElement.play();
   }
 });
 
