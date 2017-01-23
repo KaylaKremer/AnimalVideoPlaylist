@@ -1,4 +1,3 @@
-
 //Playlist object
 var playlist = new Playlist();
 
@@ -26,9 +25,9 @@ var muteButton = document.getElementById("mute");
 var nextButton = document.getElementById("next");
 var previousButton = document.getElementById("previous");
 
-//Volume and seeker controls
-var volumeController = document.getElementById("volume");
-var seekerController = document.getElementById("seek");
+//Volume and seek sliders
+var volumeSlider = document.getElementById("volume");
+var seekSlider = document.getElementById("seek");
 
 //Button icons
 var playIcon = "images/play.png";
@@ -43,6 +42,7 @@ var playPauseImg = document.getElementById("playPauseImg");
 var nextImg = document.getElementById("nextImg");
 var previousImg = document.getElementById("previousImg");
 var muteImg = document.getElementById("muteImg");
+var replayImg = document.getElementById("replayImg");
 
 //Play and pause button 
 playPauseButton.addEventListener("click", function() {
@@ -55,13 +55,19 @@ playPauseButton.addEventListener("click", function() {
   }
 });
 
+videoElement.addEventListener("ended", function(){
+  if (videoElement.ended){
+    playPauseImg.src = playIcon;
+  }
+});
+
 //Replay button
 replayButton.addEventListener("click", function() {
   videoElement.pause();
   videoElement.currentTime = 0;
   videoElement.play();
   playPauseImg.src = pauseIcon;
-  seekerController.value = 0;
+  seekSlider.value = 0;
 });
 
 //Mute button
@@ -69,11 +75,11 @@ muteButton.addEventListener("click", function () {
   if (videoElement.muted){
     videoElement.muted = false;
     muteImg.src = muteIcon;
-    volumeController.value = videoElement.volume;
+    volumeSlider.value = videoElement.volume;
   } else {
     videoElement.muted = true;
     muteImg.src = unmuteIcon;
-    volumeController.value = 0;
+    volumeSlider.value = 0;
   }
 });
 
@@ -95,30 +101,33 @@ previousButton.addEventListener("click", function() {
   playPauseImg.src = playIcon;
 });
 
-//Volume control
-volumeController.addEventListener("input", function() {
-  videoElement.volume = volumeController.value;
+//Volume slider
+volumeSlider.addEventListener("input", function() {
+  videoElement.volume = volumeSlider.value;
 });
 
-//Seeker control
-seekerController.addEventListener("durationchange", function() {
-  seekerController.max = videoElement.duration;
+//Seek slider
+videoElement.addEventListener("durationchange", function() {
+  seekSlider.max = videoElement.duration;
 });
 
-seekerController.addEventListener("timeupdate", function() {
-  seekerController.value = videoElement.currentTime;
+videoElement.addEventListener("timeupdate", function() {
+  seekSlider.value = videoElement.currentTime;
 });
 
-seekerController.addEventListener("input", function() {
-  videoElement.currentTime = seekerController.value;
+seekSlider.addEventListener("input", function() {
+  videoElement.currentTime = seekSlider.value;
   videoElement.play();
-  playPauseImg = pauseIcon;
+  playPauseImg.src = pauseIcon;
 });
 
-//Loaded default video
+//Load default video
 playlist.playlistDefaultSource(videoSourceElement);
 playlist.playlistSelect();
 playlist.playlistHTML(playlistElement);
 videoElement.load();
+
+
+
 
 
