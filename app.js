@@ -57,7 +57,12 @@ playPauseButton.addEventListener("click", function() {
 
 videoElement.addEventListener("ended", function(){
   if (videoElement.ended){
-    playPauseImg.src = playIcon;
+    playlist.playlistNext();
+    playlist.playlistHTML(playlistElement);
+    playlist.playlistSource(videoSourceElement);
+    videoElement.load();
+    videoElement.play();
+    playPauseImg.src = pauseIcon;
   }
 });
 
