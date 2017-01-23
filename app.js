@@ -55,17 +55,6 @@ playPauseButton.addEventListener("click", function() {
   }
 });
 
-videoElement.addEventListener("ended", function(){
-  if (videoElement.ended){
-    playlist.playlistNext();
-    playlist.playlistHTML(playlistElement);
-    playlist.playlistSource(videoSourceElement);
-    videoElement.load();
-    videoElement.play();
-    playPauseImg.src = pauseIcon;
-  }
-});
-
 //Replay button
 replayButton.addEventListener("click", function() {
   videoElement.pause();
@@ -131,6 +120,18 @@ playlist.playlistDefaultSource(videoSourceElement);
 playlist.playlistSelect();
 playlist.playlistHTML(playlistElement);
 videoElement.load();
+
+//Continue video playlist
+videoElement.addEventListener("ended", function(){
+  if (videoElement.ended){
+    playlist.playlistNext();
+    playlist.playlistHTML(playlistElement);
+    playlist.playlistSource(videoSourceElement);
+    videoElement.load();
+    videoElement.play();
+    playPauseImg.src = pauseIcon;
+  }
+});
 
 
 
